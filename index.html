@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Tax Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+          body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: linear-gradient(to right, #6eb7f0, #faf9f8);
+          }
+          
+          .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid #87ccee;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(157, 202, 231, 0.1);
+            background-color: whitesmoke;
+          }
+          
+          .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+          }
+          
+          .col-6 {
+            width: 50%;
+            padding: 10px;
+          }
+          
+          .col-12 {
+            width: 100%;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+          }
+          
+          label {
+            display: block;
+            margin-bottom: 10px;
+          }
+          
+          .row input[type="text"], input[type="number"], input[type="date"], select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+          }
+          
+          button {
+            background-color: #95dbef;
+            color: #060505;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+          }
+          
+          button:hover {
+            background-color: #46b0d4;
+          }
+          
+          h2 {
+            margin: 1rem 0rem;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+          }
+          
+          footer {
+            background-color: #f2f2f2;
+            padding: 2px;
+            text-align: center;
+            color: #666;
+            clear: both;
+          }
+          
+          footer p {
+            margin: 0;
+          }
+          
+          /* Media Queries for responsiveness */
+          @media (max-width: 768px) {
+            .col-6 {
+                width: 100%;
+            }
+            .col-12 {
+                flex-direction: column;
+                align-items: center;
+            }
+          }
+          
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2> पाणी कर </h2>
+        <hr/>
+        <form id="water-tax-form" onsubmit="handleSubmit(event)">
+            <div class="row">
+                <div class="col-6">
+                    <label for="consumer-no">Consumer No(वापरकर्ता.क्र):</label>
+                    <input type="text" id="consumer_no" name="consumer_no" required>
+                </div>
+                <div class="col-6">
+                    <label for="connection-no">Connection No(नळ जोडणी.क्र):</label>
+                    <input type="text" id="connection_no" name="connection_no" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <label for="property_no">House No(घर.क्र):</label>
+                    <input type="text" id="property_no" name="property_no" required>
+                </div>
+                <div class="col-6">
+                    <label for="owner_name">Owner Name(मालकाचे नाव):</label>
+                    <input type="text" id="owner_name" name="owner_name" required>
+                </div>        
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <label for="address">Address(पत्ता):</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+                <div class="col-6">
+                    <label for="mobile_no">Mobile-No(मोबाईल क्रमांक):</label>
+                    <input type="text" id="mobile_no" name="mobile_no" maxlength="10" required autofocus"/>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-6">
+                        <label for="state">State(राज्य):</label>
+                            <select id="state" name="state" onchange="onStateChange()">
+                                   <option value="">Select</option>
+                                  <option value="Maharashtra">Maharashtra</option>
+                            </select>
+                    </div>
+                <div class="col-6">
+                    <label for="district">District(जिल्हा):</label>
+                        <select id="district" name="district" onchange="onDistrictChange()">
+                            <option value="select">Select</option>
+                            <option value="Ahmednagar">Ahmednagar</option>
+                            <option value="Amravati">Amravati</option>
+                            <option value="Aurangabad">Aurangabad</option>
+                            <option value="Beed">Beed</option>
+                            <option value="Bhandara">Bhandara</option>
+                            <option value="Buldhana">Buldhana</option>
+                            <option value="Chandrapur">Chandrapur</option>
+                            <option value="Dhule">Dhule</option>
+                            <option value="Gadchiroli">Gadchiroli</option>
+                            <option value="Gondia">Gondia</option>
+                            <option value="Hingoli">Hingoli</option>
+                            <option value="Jalgaon">Jalgaon</option>
+                            <option value="Jalna">Jalna</option>
+                            <option value="Kolhapur">Kolhapur</option>
+                            <option value="Latur">Latur</option>
+                            <option value="Mumbai City">Mumbai City</option>
+                            <option value="Mumbai Suburban">Mumbai Suburban</option>
+                            <option value="Nagpur">Nagpur</option>
+                            <option value="Nanded">Nanded</option>
+                            <option value="Nandurbar">Nandurbar</option>
+                            <option value="Nashik">Nashik</option>
+                            <option value="Osmanabad">Osmanabad</option>
+                            <option value="Palghar">Palghar</option>
+                            <option value="Parbhani">Parbhani</option>
+                            <option value="Pune">Pune</option>
+                            <option value="Raigad">Raigad</option>
+                            <option value="Ratnagiri">Ratnagiri</option>
+                            <option value="Sangli">Sangli</option>
+                            <option value="Satara">Satara</option>
+                            <option value="Sindhudurg">Sindhudurg</option>
+                            <option value="Solapur">Solapur</option>
+                            <option value="Thane">Thane</option>
+                            <option value="Wardha">Wardha</option>
+                            <option value="Washim">Washim</option>
+                            <option value="Yavatmal">Yavatmal</option>
+                        </select>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <label for="sub_district">Sub-district(तालुका):</label>
+                    <input type="text" id="sub_district" name="sub_district"/>
+                </div>
+                <div class="col-6">
+                    <label for="village">Village(गाव):</label>
+                        <input type="text" id="village" name="village"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <label for="grampanchayat">Grampanchayat(ग्रामपंचायत):</label>
+                        <input type="text" id="grampanchayat" name="grampanchayat"/>
+                </div>
+                <div class="col-6">
+                    <label for="date">Date(दिनांक):</label>
+                    <input type="date" id="date" name="date">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <label for="tax_amt">Tax Amount(टॅक्स रुपये):</label>
+                    <input type="text" id="tax_amt" name="tax_amt">
+                </div>
+                <div class="col-6">
+                    <label for="billing_type">Billing Type:</label>
+                    <select id="billing_type" name="billing_type" required>
+                        <option value="">Select</option>
+                        <option value="upi">UPI</option>
+                        <option value="Payment-Gateway">Payment Gateway</option>
+                        <option value="Card-Payment">Card Payment</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button type="button" id="cancel">Cancel</button>
+                    <button type="submit" id="next">NEXT >>></button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <footer>
+        <p>&copy; Digispect Technology-2024.</p>
+    </footer>
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById('water-tax-form');
+            const formData = new FormData(form);
+            const params = new URLSearchParams();
+
+            for (const pair of formData.entries()) {
+                params.append(pair[0], pair[1]);
+            }
+
+            console.log('Submitting form with params:', params.toString());
+
+            fetch('https://script.google.com/macros/s/AKfycbxEngXa2PSIjj4PY4iaI6rZt0BsCi5RO1fQE8j0CMNle6k14i9m4A4jYHHWuE2Tam-Kmg/exec', {
+                method: 'POST',
+                body: params
+            }).then(response => response.text())  // Change to .text() to handle plain text
+                .then(data => {
+                    console.log('Response from server:', data);  // Log the plain text response
+                    if (data.trim() === 'Data Saved Successfully!') {  // Check for plain text response 'Success'
+                        const queryString = params.toString();
+                        console.log('Redirecting to:', 'paytax.html?' + queryString);  // Log the redirection URL
+                        window.location.href = 'paytax.html?' + queryString;
+                    } else {
+                        console.log('Error response from server:', data);
+                        alert('Error submitting form');
+                    }
+                }).catch(error => {
+                    console.error('Error:', error);
+                    alert('Error submitting form');
+                });
+        }
+    </script>
+</body>
+</html>
